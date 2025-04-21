@@ -17,8 +17,8 @@ class BODY_PART(SQLModel, table=True):
 class EXERCISE(SQLModel, table=True):
     ID: int | None = Field(default=None, primary_key=True)
     NAME: str = Field(index=True)
-    BODY_PART_ID: int = Field(index=True)
-    WEIGHT_TYPE: str = Field(index=True)
+    BODY_PART_ID: int | None = Field(index=True)
+    WEIGHT_TYPE: str | None = Field(index=True)
 
 class EXERCISE_SET(SQLModel, table=True):
     ID: int | None = Field(default=None, primary_key=True)
@@ -210,4 +210,30 @@ def finish_session():
         return {
             'success': True,
             'message': 'Session complete!'
+        }
+
+@app.get('/addSplit/')
+def add_split(splitName : str):
+    with Session(engine) as session:
+        split = SPLIT()
+        split.NAME = splitName
+        session.add(split)
+        session.commit()
+
+        return {
+            'success': True,
+            'message': 'Split added!'
+        }
+
+@app.get('/addExcerciseToDb/')
+def add_exc(excName: str):
+    with Session(engine) as session:
+        exc = EXERCISE()
+        exc.NAME = excName
+        session.add(exc)
+        session.commit()
+
+        return {
+            'success': True,
+            'message': 'Split added!'
         }
