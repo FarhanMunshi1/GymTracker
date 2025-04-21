@@ -8,7 +8,7 @@ import IndexPage from './pages/index.js';
 // @ts-ignore
 import StatsPage from './pages/stats';
 // @ts-ignore
-import SettingsPage from './pages/settings';
+import SettingsPage from './pages/settings.js';
 
 export default function App() {
 
