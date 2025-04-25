@@ -6,7 +6,9 @@ COPY . /app
 
 RUN apt update && apt install sqlite3
 
-RUN cd db && sqlite3 GymApp.db ".databases"
+RUN mkdir db && cd db
+
+RUN sqlite3 GymApp.db ".databases"
 
 RUN pip install --no-cache-dir -r requirements.txt
 
