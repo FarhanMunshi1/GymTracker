@@ -90,10 +90,10 @@ export default function IndexPage() {
 
     // on page load
     useEffect(() => {
-        axios.get('backend/getconn/',{})
-           .then((response) => {
-	      console.log(response.data);	
-	   });
+        //axios.get('backend/getconn/',{})
+        //   .then((response) => {
+	//      console.log(response.data);	
+	//   });
 
         axios.get('backend/indexpagepackage/', {
             params: {
