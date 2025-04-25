@@ -1,0 +1,11 @@
+services:
+   backend:
+      build: ./backend/server
+      ports:
+        - "3004:8001"
+   vite:
+      build: ./frontend
+      ports:
+        - "3003:3003"
+      depends_on:
+        - backend

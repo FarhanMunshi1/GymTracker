@@ -42,7 +42,7 @@ class SPLIT_RECORD(SQLModel, table=True):
 
 #db file location
 sqlite_file_name = 'GymApp.db'
-sqlite_url = f'sqlite:///../db/{sqlite_file_name}'
+sqlite_url = f'sqlite:///./db/{sqlite_file_name}'
 
 #db config
 connect_args = {'check_same_thread': False}
@@ -55,7 +55,7 @@ def create_db_and_tables():
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],  
+    allow_origins=['*'],
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*'],
@@ -64,6 +64,12 @@ app.add_middleware(
 @app.on_event('startup')
 def on_startup():
     create_db_and_tables()
+
+@app.get('/getconn/')
+def get_conn():
+    return {
+     'success': True
+    }
 
 @app.get('/indexpagepackage/')
 def getIndexPagePackage(date: str):
