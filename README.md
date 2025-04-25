@@ -10,16 +10,21 @@ A simple gym tracking app that can be installed on your phone through a browser 
 
 ## Build
 Building this project requires docker compose. At the root of the project, run: 
+<br>
 ![Alt text](images/ComposeCommand.png)
-
+<br>
 You can now visit http://localhost:3003
 
 ## Hosting
 
 Adding domains to the compose file is on the to do list, but for now edit frontend/vite.config.ts and add allowedHosts: ['example.com'] directly under the server property.
+<br>
 ![Alt text](images/viteConfig.png)
+<br>
 Then, navigate to backend/server/main.py and change "allow_origins=[*]" to "allow_origins=['https://example.com']".
+<br>
 ![Alt text](images/PythonCORS.png)
+<br>
 
 ## Features
 
