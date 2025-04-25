@@ -10,7 +10,7 @@ A simple gym tracking app that can be installed on your phone through a browser 
 
 ## Build
 Building this project requires docker compose. At the root of the project, run: 
-
+![Alt text](images/ComposeCommand.png)
 You can now visit http://localhost:3003
 
 ## Hosting
