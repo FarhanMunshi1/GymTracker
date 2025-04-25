@@ -1,4 +1,2 @@
 backend/server/venv
 backend/server/__pycache__
-backend/db/GymApp.db
-backend/db/GymAppBackup.db
