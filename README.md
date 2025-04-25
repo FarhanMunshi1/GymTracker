@@ -2,9 +2,9 @@
 
 A simple gym tracking app that can be installed on your phone through a browser as a PWA
 
-# Images
-
-![Alt text](images/AppImage.png)
+<p align="center">
+  ![Alt text](images/AppImage.png)
+</p>
 
 
 
