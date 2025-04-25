@@ -3,7 +3,7 @@
 A simple gym tracking app that can be installed on your phone through a browser as a PWA
 
 <p align="center">
-  ![Alt text](images/AppImage.png)
+  <img src='images/AppImage.png' alt='app-screenshot' width=400>
 </p>
 
 
