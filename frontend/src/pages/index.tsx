@@ -37,6 +37,7 @@ export default function IndexPage() {
         WEIGHT: number,
         DROPSET: boolean,
         WARMUP: boolean,
+        FAILIURE?: boolean,
         REPS: number,
         SPLIT_RECORD_ID?: number,
         EXERCISE_ID: number,
@@ -101,7 +102,7 @@ export default function IndexPage() {
             }
         })
             .then((response) => {
-                console.log(response.data);
+                console.log(response);
                 var data: IndexPagePackage = response.data;
 
                 setSplits(data.splits);

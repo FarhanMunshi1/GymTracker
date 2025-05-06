@@ -25,6 +25,7 @@ class EXERCISE_SET(SQLModel, table=True):
     WEIGHT: float = Field(index=True)
     DROPSET: bool = Field(index=True)
     WARMUP: bool = Field(index=True)
+    FAILIURE: bool = Field(index=True)
     REPS: int = Field(index=True)
     SPLIT_RECORD_ID: int = Field(index=True)
     EXERCISE_ID: int = Field(index=True)
