@@ -12,34 +12,34 @@ from collections import defaultdict
 # db mapping classes
 class BODY_PART(SQLModel, table=True):
     ID: int | None = Field(default=None, primary_key=True)
-    NAME: str = Field(index=True)
+    NAME: str = Field()
 
 class EXERCISE(SQLModel, table=True):
     ID: int | None = Field(default=None, primary_key=True)
-    NAME: str = Field(index=True)
+    NAME: str = Field()
     BODY_PART_ID: int | None = Field(index=True)
-    WEIGHT_TYPE: str | None = Field(index=True)
+    WEIGHT_TYPE: str | None = Field()
 
 class EXERCISE_SET(SQLModel, table=True):
     ID: int | None = Field(default=None, primary_key=True)
-    WEIGHT: float = Field(index=True)
-    DROPSET: bool = Field(index=True)
-    WARMUP: bool = Field(index=True)
-    FAILIURE: bool = Field(index=True)
-    REPS: int = Field(index=True)
+    WEIGHT: float = Field()
+    DROPSET: bool = Field()
+    WARMUP: bool = Field()
+    FAILIURE: bool = Field()
+    REPS: int = Field()
     SPLIT_RECORD_ID: int = Field(index=True)
     EXERCISE_ID: int = Field(index=True)
 
 class SPLIT(SQLModel, table=True):
     ID: int | None = Field(default=None, primary_key=True)
-    NAME: str = Field(index=True)
+    NAME: str = Field()
 
 class SPLIT_RECORD(SQLModel, table=True):
     ID: int | None = Field(default=None, primary_key=True)
     SPLIT_ID: int = Field(index=True)
     DATE: str = Field(index=True)
-    SPLIT_NAME: str = Field(index=True)
-    FINISHED: bool = Field(index=True)
+    SPLIT_NAME: str = Field()
+    FINISHED: bool = Field()
 
 #db file location
 sqlite_file_name = 'GymApp.db'
@@ -161,13 +161,14 @@ def create_split_record(splitId: int, splitName: str):
         }
 
 @app.get('/addset/')
-def add_set(weight: float, reps: int, dropset: bool, warmup: bool, recordId: int, exerciseId: int):
-
+def add_set(weight: float, reps: int, dropset: bool, warmup: bool, failuire: bool, recordId: int, exerciseId: int):
+    print('hi')
     exerciseSet = EXERCISE_SET()
     exerciseSet.WEIGHT = weight
     exerciseSet.REPS = reps
     exerciseSet.DROPSET = dropset
     exerciseSet.WARMUP = warmup
+    exerciseSet.FAILIURE = failuire
     exerciseSet.SPLIT_RECORD_ID = recordId
     exerciseSet.EXERCISE_ID = exerciseId
 

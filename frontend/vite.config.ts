@@ -16,6 +16,7 @@ export default defineConfig({
   server: {
     port: 3003,
     host: '0.0.0.0',
+    //allowedHosts: [''], 
     proxy: {
       '/backend': {
           target: 'http://localhost:3004',
