@@ -35,7 +35,6 @@ Then, navigate to backend/server/main.py and change "allow_origins=[*]" to "allo
 ## To do list
 - Allow hosting domain to be specified through docker
 - Import existing data
-- Search functionality when searching for an exercise
 - Stats Page
 - Settings Page
 - Caching through service workers
