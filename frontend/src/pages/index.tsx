@@ -47,6 +47,8 @@ export default function IndexPage() {
   const [warmup, setWarmup] = useState<boolean>(false);
   const [failuire, setFailuire] = useState<boolean>(false);
 
+  const [search, setSearch] = useState<string>('');
+
   const set_weight_ref = useRef<HTMLInputElement>(null);
   const set_reps_ref = useRef<HTMLInputElement>(null);
 
@@ -54,7 +56,7 @@ export default function IndexPage() {
   useEffect(() => {
     Server.GetIndexPagePackage(date!).then(
       (data: IndexPagePackage) => {
-        console.log(data);
+        // console.log(data);
         setSplits(data.splits);
         setAllExercises(data.allExercises);
         setPreviousRecords(data.previousRecords);
@@ -255,7 +257,7 @@ export default function IndexPage() {
                       </h2>
                       {editable && exercise.sets && exercise.sets.length == 0 && (
                         <button onClick={() => deleteExercise(exercise)}>
-                          <ImBin size={25} className="mr-5" color="red" />{' '}
+                          <ImBin size={25} className="mr-5" color="red" />
                         </button>
                       )}
                     </div>
@@ -417,23 +419,61 @@ export default function IndexPage() {
             <h3 className="font-bold text-lg mb-5">Select exercise</h3>
             <label className="input mb-5">
               <FaSearch />
-              <input type="search" required placeholder="Search" />
+              <input
+                type="search"
+                required
+                placeholder="Search"
+                onChange={e => setSearch(e.target.value)}
+              />
             </label>
             <div className="w-64 max-h-60 overflow-y-auto bg-white border border-gray-300 rounded-md shadow-md m-auto">
-              {allExercises.map(function (obj, k) {
-                if (!exercises.find(e => e.ID == obj.ID)) {
+              {allExercises.map((exercise, k) => {
+                if (search.trim() != '') {
+                  if (selectedExercise) {
+                    if (search && exercise.NAME.toLowerCase().includes(search.toLowerCase())) {
+                      return (
+                        <div
+                          key={k}
+                          onDoubleClick={AddExerciseConfirmed}
+                          className={`px-4 py-2 text-black ${
+                            selectedExercise.ID == exercise.ID ? 'bg-amber-400' : 'bg-white'
+                          }`}
+                          onClick={() => setSelectedExercise(exercise)}
+                        >
+                          <div className="flex">
+                            <p className="m-auto">{exercise.NAME}</p>
+                          </div>
+                        </div>
+                      );
+                    }
+                  } else {
+                    if (search && exercise.NAME.toLowerCase().includes(search.toLowerCase())) {
+                      return (
+                        <div
+                          key={k}
+                          className={`px-4 py-2 text-black bg-white`}
+                          onClick={() => setSelectedExercise(exercise)}
+                        >
+                          <div className="flex">
+                            <p className="m-auto">{exercise.NAME}</p>
+                          </div>
+                        </div>
+                      );
+                    }
+                  }
+                } else {
                   if (selectedExercise) {
                     return (
                       <div
                         key={k}
                         onDoubleClick={AddExerciseConfirmed}
                         className={`px-4 py-2 text-black ${
-                          selectedExercise.ID == obj.ID ? 'bg-amber-400' : 'bg-white'
+                          selectedExercise.ID == exercise.ID ? 'bg-amber-400' : 'bg-white'
                         }`}
-                        onClick={() => setSelectedExercise(obj)}
+                        onClick={() => setSelectedExercise(exercise)}
                       >
                         <div className="flex">
-                          <p className="m-auto">{obj.NAME}</p>
+                          <p className="m-auto">{exercise.NAME}</p>
                         </div>
                       </div>
                     );
@@ -441,11 +481,11 @@ export default function IndexPage() {
                     return (
                       <div
                         key={k}
-                        className={`px-4 py-2 text-black bg-white}`}
-                        onClick={() => setSelectedExercise(obj)}
+                        className={`px-4 py-2 text-black bg-white`}
+                        onClick={() => setSelectedExercise(exercise)}
                       >
                         <div className="flex">
-                          <p className="m-auto">{obj.NAME}</p>
+                          <p className="m-auto">{exercise.NAME}</p>
                         </div>
                       </div>
                     );
