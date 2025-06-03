@@ -14,4 +14,4 @@ ENV GUNICORN_CMD_ARGS="--keep-alive 0"
 
 EXPOSE 8001
 
-CMD ["/bin/sh", "-c", "sqlite3 /app/db/GymApp.db '.databases' && uvicorn main:app --host 0.0.0.0 --port 8001"]
+CMD ["/bin/sh", "-c", "uvicorn main:app --host 0.0.0.0 --port 8001"]
